@@ -11,11 +11,11 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
 
     private let tableView: UITableView = {
         let table = UITableView()
-        table.register(UITableView.self, forCellReuseIdentifier: "cell")
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
 
-    var cities: [CityList] = []
+    var cities: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +31,18 @@ class SearchResultViewController: UIViewController, UITableViewDelegate, UITable
         tableView.frame = view.bounds
     }
     
-    public func update( with cities: [CityList]) {
+    public func update( with cities: [String]) {
         self.cities = cities
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        cities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = cities[indexPath.row].name
-//        cell.detailTextLabel?.text = cities[indexPath.row].country
+        cell.textLabel?.text = cities[indexPath.row]
         return cell
     }
     

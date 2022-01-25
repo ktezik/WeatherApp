@@ -15,8 +15,8 @@ class ViewController: UIViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getJsonFromDirectory()
         setupNavigationBar()
+        getJsonFromDirectory()
     }
     
     func setupNavigationBar() {
@@ -36,9 +36,17 @@ class ViewController: UIViewController, UISearchResultsUpdating {
               let searchVC = searchController.searchResultsController as? SearchResultViewController
         else { return }
         
-        searchVC.update(with: cityLists)
+        var array: [String] = []
+        
+        for object in cityLists {
+            let name = object.name as! String
+            array.append(name)
+        }
+        
+        searchVC.update(with: array.filter({$0.contains(text)}))
+        
         print(cityLists.count)
-        print(searchVC.cities.count)
+        print(array.count)
         
         print(text)
     }

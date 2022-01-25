@@ -7,5 +7,4 @@
 
 struct CityList: Codable {
     let name: String?
-    let country: String?
 }
