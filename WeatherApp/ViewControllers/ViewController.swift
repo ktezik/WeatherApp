@@ -43,7 +43,7 @@ class ViewController: UIViewController, UISearchResultsUpdating {
             array.append(name)
         }
         
-        searchVC.update(with: array.filter({$0.contains(text)}))
+        searchVC.update(with: array.filter({$0.lowercased().contains(text.lowercased())}))
         
         print(cityLists.count)
         print(array.count)
